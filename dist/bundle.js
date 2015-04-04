@@ -35,14 +35,11 @@ var Image = (function (_React$Component) {
         var timeago = m.isBefore(this.props.time) ? m.from(this.props.time) : "just now"; //don't show time diffs in the future
         return React.createElement(
           "div",
-          { className: "component-image" },
+          { className: "component-image", style: { background: this.props.doc.color } },
           React.createElement("img", { src: this.props.doc.url }),
           React.createElement(
             "p",
             null,
-            "Submitted by ",
-            this.props.doc.submitter,
-            " ",
             timeago
           )
         );

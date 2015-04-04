@@ -17,9 +17,9 @@ class Image extends React.Component {
     let m = moment(this.props.doc.timestamp);
     let timeago = m.isBefore(this.props.time) ? m.from(this.props.time) : "just now"; //don't show time diffs in the future
 		return (
-			<div className="component-image">
+			<div className="component-image" style={{background: this.props.doc.color}}>
 				<img src={this.props.doc.url} />
-				<p>Submitted by {this.props.doc.submitter} {timeago}</p>
+        <p>{timeago}</p>
 			</div>
 		)
 	}

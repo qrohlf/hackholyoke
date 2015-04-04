@@ -26,7 +26,7 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI);
 
 var Image = mongoose.model('Image', {
-	submitter: String, 
+	color: String, 
 	url: String,
 	timestamp: {type: Date, default: Date.now}});
 

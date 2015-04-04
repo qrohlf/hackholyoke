@@ -2,8 +2,7 @@
 @import "icomoon";
 
 // Global vars
-$sans-serif: proxima-nova, sans-serif;
-$monospace: Inconsolata, monospace;
+$sans-serif: lato, sans-serif;
 $text-color-dark: lighten(black, 30%);
 $text-color-light: darken(white, 10%);
 
@@ -25,6 +24,7 @@ body {
   font-size: 16px;
   text-align: center;
   color: $text-color-dark;
+  background: #E8E8E8;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,6 +33,12 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3rem;
+}
+
+.lead {
+  max-width: 670px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h2 {
@@ -59,8 +65,14 @@ a:hover {
 }
 
 .component-image {
+  display: inline-block;
+  color: white;
+
   img {
-    max-width: 300px;
+    max-width: 600px;
+    opacity: 0.7;
   }
+  margin: 20px;
+  border-radius: 5px;
 }
 
