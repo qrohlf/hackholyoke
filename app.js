@@ -14,11 +14,12 @@ var io = require("socket.io")(server);
 // Express config: Serve up our static assets on /
 app.use(express.static(__dirname + "/dist"))
 
-// // Express config: Parse JSON API requests
-// app.use(bodyParser.json());
-
-// // Express config: Parse URLencoded API requests
-// app.use(bodyParser.urlencoded({extended: true}));
+// Express config: Fuck security
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 
 // Monogodb stuff
 var mongoose = require('mongoose');
