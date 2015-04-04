@@ -40,11 +40,7 @@ var Image = (function (_React$Component) {
           React.createElement(
             "p",
             null,
-            React.createElement(
-              "a",
-              { href: "/" + this.props.doc._id },
-              timeago
-            )
+            timeago
           )
         );
       }
