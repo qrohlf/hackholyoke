@@ -28,7 +28,7 @@
     "gulp-size": "^1.2.1",
     "gulp-sourcemaps": "^1.3.0",
     "gulp-util": "^3.0.4",
-    "jade": "^1.7.0",
+    "jade": "^1.9.2",
     "jquery": "^2.1.3",
     "main-bower-files": "^2.5.0",
     "marked": "^0.3.3",

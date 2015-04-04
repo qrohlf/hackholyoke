@@ -48,13 +48,13 @@ h2 {
 }
 
 a, a:visited {
-  color: #225378;
+  color: #FFF;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: darken(#225378, 20%);
+  color: mix(#FFF, #225378, 20%);
 }
 
 .clearfix {

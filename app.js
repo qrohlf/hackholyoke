@@ -14,6 +14,10 @@ var io = require("socket.io")(server);
 // Express config: Serve up our static assets on /
 app.use(express.static(__dirname + "/dist"))
 
+// Express config: VIEWS 
+app.set('views', './views')
+app.set('view engine', 'jade')
+
 // Express config: Fuck security
 app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -55,6 +59,12 @@ app.get("/images", function(req, res) {
 	    res.send(JSON.stringify(items));
 	});
 });
+
+app.get("/:id", function(req, res) {
+	Image.findOne(req.params.id, function(err, doc) {
+		res.render('single', doc)
+	});
+})
 
 
 // Socket.io stuff

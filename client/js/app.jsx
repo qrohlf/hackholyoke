@@ -19,7 +19,7 @@ class Image extends React.Component {
 		return (
 			<div className="component-image" style={{background: this.props.doc.color}}>
 				<img src={this.props.doc.url} />
-        <p>{timeago}</p>
+        <p><a href={"/"+this.props.doc._id}>{timeago}</a></p>
 			</div>
 		)
 	}
