@@ -29,19 +29,10 @@ var Image = (function (_React$Component) {
   _inherits(Image, _React$Component);
 
   _createClass(Image, {
-    componentDidMount: {
-      value: function componentDidMount() {
-        //update the time ago estimates every 60 seconds
-        setInterval(function () {
-          this.forceUpdate();
-          console.log("re-rendering image");
-        }, 15 * 1000);
-      }
-    },
     render: {
       value: function render() {
         var m = moment(this.props.doc.timestamp);
-        var timeago = m.isBefore() ? m.fromNow() : "just now"; //don't show time diffs in the future
+        var timeago = m.isBefore(this.props.time) ? m.from(this.props.time) : "just now"; //don't show time diffs in the future
         return React.createElement(
           "div",
           { className: "component-image" },
@@ -66,7 +57,7 @@ var App = (function (_React$Component2) {
   function App(props) {
     _classCallCheck(this, App);
 
-    this.state = { images: [] };
+    this.state = { images: [], time: moment() };
     _get(Object.getPrototypeOf(App.prototype), "constructor", this).call(this, props);
   }
 
@@ -87,15 +78,23 @@ var App = (function (_React$Component2) {
           var i = JSON.parse(json);
           this.setState({ images: update(this.state.images, { $unshift: [i] }) });
         }).bind(this));
+
+        //update the time ago estimates every 60 seconds
+        setInterval((function () {
+          this.setState({ time: moment() });
+          console.log("updating times");
+        }).bind(this), 15 * 1000);
       }
     },
     render: {
       value: function render() {
+        var _this = this;
+
         return React.createElement(
           "div",
           null,
           this.state.images.map(function (i) {
-            return React.createElement(Image, { doc: i });
+            return React.createElement(Image, { doc: i, time: _this.state.time });
           })
         );
       }

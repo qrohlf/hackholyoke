@@ -13,17 +13,9 @@ class Image extends React.Component {
 		super(props);
 	}
 
-  componentDidMount() {
-    //update the time ago estimates every 60 seconds
-    setInterval(function() {
-      this.forceUpdate();
-      console.log('re-rendering image');
-    }, 15*1000)
-  }
-
 	render() {
     let m = moment(this.props.doc.timestamp);
-    let timeago = m.isBefore() ? m.fromNow() : "just now"; //don't show time diffs in the future
+    let timeago = m.isBefore(this.props.time) ? m.from(this.props.time) : "just now"; //don't show time diffs in the future
 		return (
 			<div className="component-image">
 				<img src={this.props.doc.url} />
@@ -36,7 +28,7 @@ class Image extends React.Component {
 class App extends React.Component {
 
   constructor(props) {
-  	this.state= {images: []};
+  	this.state= {images: [], time: moment()};
     super(props);
   }
 
@@ -53,12 +45,18 @@ class App extends React.Component {
   		var i = JSON.parse(json);
   		this.setState({images: update(this.state.images, {$unshift: [i]})});
   	}.bind(this));
+
+    //update the time ago estimates every 60 seconds
+    setInterval(function() {
+      this.setState({time: moment()});
+      console.log('updating times');
+    }.bind(this), 15*1000)
   }
 
   render() {
   	return (
   		<div>
-  			{this.state.images.map((i)=> <Image doc={i} />)}
+  			{this.state.images.map((i)=> <Image doc={i} time={this.state.time}/>)}
   		</div>
   	)
   }
