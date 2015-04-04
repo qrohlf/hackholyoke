@@ -29,8 +29,19 @@ var Image = (function (_React$Component) {
   _inherits(Image, _React$Component);
 
   _createClass(Image, {
+    componentDidMount: {
+      value: function componentDidMount() {
+        //update the time ago estimates every 60 seconds
+        setInterval(function () {
+          this.forceUpdate();
+          console.log("re-rendering image");
+        }, 15 * 1000);
+      }
+    },
     render: {
       value: function render() {
+        var m = moment(this.props.doc.timestamp);
+        var timeago = m.isBefore() ? m.fromNow() : "just now"; //don't show time diffs in the future
         return React.createElement(
           "div",
           { className: "component-image" },
@@ -41,7 +52,7 @@ var Image = (function (_React$Component) {
             "Submitted by ",
             this.props.doc.submitter,
             " ",
-            moment(this.props.doc.timestamp).fromNow()
+            timeago
           )
         );
       }

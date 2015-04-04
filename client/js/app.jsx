@@ -13,11 +13,21 @@ class Image extends React.Component {
 		super(props);
 	}
 
+  componentDidMount() {
+    //update the time ago estimates every 60 seconds
+    setInterval(function() {
+      this.forceUpdate();
+      console.log('re-rendering image');
+    }, 15*1000)
+  }
+
 	render() {
+    let m = moment(this.props.doc.timestamp);
+    let timeago = m.isBefore() ? m.fromNow() : "just now"; //don't show time diffs in the future
 		return (
 			<div className="component-image">
 				<img src={this.props.doc.url} />
-				<p>Submitted by {this.props.doc.submitter} {moment(this.props.doc.timestamp).fromNow()}</p>
+				<p>Submitted by {this.props.doc.submitter} {timeago}</p>
 			</div>
 		)
 	}
