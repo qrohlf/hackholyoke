@@ -1,0 +1,68 @@
+@import "normalize";
+@import "icomoon";
+
+// Global vars
+$sans-serif: proxima-nova, sans-serif;
+$monospace: Inconsolata, monospace;
+$text-color-dark: lighten(black, 30%);
+$text-color-light: darken(white, 10%);
+
+// Palette
+$dark-blue: #2C3E50;
+$dark-red: #E74C3C;
+
+// Global tweaks & fixes
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $sans-serif;
+  font-size: 16px;
+  text-align: center;
+  color: $text-color-dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+  font-weight: normal;
+  margin: 3rem 0;
+}
+
+a, a:visited {
+  color: #225378;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: darken(#225378, 20%);
+}
+
+.clearfix {
+  &:before, &:after {
+    content: ' ';
+    display: table;
+  }
+}
+
+.component-image {
+  width: 200px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
